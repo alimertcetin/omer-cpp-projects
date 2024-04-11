@@ -1,0 +1,46 @@
+document.addEventListener("DOMContentLoaded", function() {
+    const searchInput = document.getElementById("searchInput");
+    const searchResultsOverlay = document.getElementById("searchResultsOverlay");
+
+    // Function to fetch project names from the "projects" folder
+    function fetchProjectsFromFolder() {
+        // This function should be implemented as shown earlier
+    }
+
+    // Function to filter project names based on user input
+    function filterProjects(query, projectNames) {
+        // This function should be implemented as shown earlier
+    }
+
+    // Function to display search results
+    function displaySearchResults(results) {
+        const searchResultsList = document.getElementById("searchResultsList");
+        searchResultsList.innerHTML = results.length ? results.map(result => `<div>${result}</div>`).join('') : '<div>No projects found</div>';
+        searchResultsOverlay.classList.add('show');
+    }
+
+    // Event listener for input changes
+    searchInput.addEventListener("input", function() {
+        const query = this.value;
+        fetchProjectsFromFolder()
+            .then(projectNames => {
+                const filteredProjects = filterProjects(query, projectNames);
+                displaySearchResults(filteredProjects);
+            })
+            .catch(error => {
+                console.error('Error fetching projects:', error);
+            });
+    });
+
+    // Close search results overlay when clicking outside of it
+    document.addEventListener("click", function(event) {
+        if (!event.target.closest('.search-container')) {
+            searchResultsOverlay.classList.remove('show');
+        }
+    });
+
+    // Prevent closing search results overlay when clicking inside it
+    searchResultsOverlay.addEventListener("click", function(event) {
+        event.stopPropagation();
+    });
+});
