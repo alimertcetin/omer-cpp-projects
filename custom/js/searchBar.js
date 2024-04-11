@@ -8,6 +8,7 @@ document.addEventListener("DOMContentLoaded", function() {
         return fetch(projectsFolder)
             .then(response => {
                 if (!response.ok) {
+		    console.log(response.status, response.statusText);
                     throw new Error('Network response was not ok');
                 }
                 return response.text();
