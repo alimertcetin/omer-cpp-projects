@@ -30,6 +30,7 @@ window.onload = function() {
             })
             .catch(error => {
                 console.error("Error fetching projects:", error);
+		console.log(projectsDirectory);
                 return [];
             });
     }
