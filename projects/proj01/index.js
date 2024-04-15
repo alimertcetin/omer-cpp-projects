@@ -29,13 +29,32 @@ var moduleOverrides = Object.assign({}, Module);
 var arguments_ = ['argTest1', 'argTest2'];
 
 fetch('args.txt')
-    .then(result => result.text())
+    .then(result => {
+        if(result.ok) {
+            return result.text(); // return the promise here
+        } else {
+            return Promise.reject("Error loading args.txt"); // reject the promise to continue the error handling flow
+        }
+    })
     .then(text => {
-	var splitted = text.split(' ');
-	splitted.forEach(function(item){
-	    arguments_.push(item);
-	});
+	var lineEnding = getLineEndingChar(text);
+        var splitted = text.split(lineEnding);
+        splitted.forEach(function(item) {
+            arguments_.push(item);
+        });
+    })
+    .catch(error => {
+        // Handle the error if needed
+        alert(error); // Display the error message
     });
+
+function getLineEndingChar(text)
+{
+    var idx = text.indexOf('\n');
+    if (idx < 1) return '\n';
+
+    return text[idx - 1] === '\r' ? '\r\n' : '\n';
+}
 
 var thisProgram = './this.program';
 var quit_ = (status, toThrow) => {
