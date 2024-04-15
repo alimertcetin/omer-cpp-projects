@@ -30,7 +30,12 @@ var arguments_ = ['argTest1', 'argTest2'];
 
 fetch('args.txt')
     .then(result => result.text())
-    .then(text => arguments_.push(text));
+    .then(text => {
+	var splitted = text.split(' ');
+	splitted.forEach(function(item){
+	    arguments_.push(item);
+	});
+    });
 
 var thisProgram = './this.program';
 var quit_ = (status, toThrow) => {
