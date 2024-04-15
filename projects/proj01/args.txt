@@ -1,5 +1,11 @@
-This is args.tx
-Second line
-This is a very long line with characters to test in html page and we will see if this will be parsed as expected.
-This is third line.
-This is fifth and the last line.
+1. This is args.txt file
+2. This file is passed to c++ program by index.js as arguments.
+3. index.js reads this file using fetch() and puts the content to arguments_ collection.
+4. Then c++ side reads the passed arguments and logs them using std::cout.
+5. Emscripten captures this output and displays it.
+6. This
+7. is
+8. a
+9. short
+10. line
+11. This is a very long line with characters to test in html page and we will see if this will be parsed as expected.
