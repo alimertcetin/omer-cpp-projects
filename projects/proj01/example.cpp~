@@ -1,0 +1,46 @@
+#include <iostream>
+#include <fstream>
+#include <vector>
+
+#define log(x) std::cout << x << std::endl
+
+int main(int argc, char* argv[])
+{
+
+  log("Running cpp");
+  std::fstream f;
+  f.open("args.txt", std::ios::in);
+  if (f.is_open())
+    {
+      log("File is open.");
+    }
+  else
+    {
+      log("File is not open.");
+    }
+
+  log("Reading file...");
+  std::vector<std::string> vec;
+  std::string s;
+  while(getline(f, s))
+    {
+      vec.push_back(s);
+    }
+
+  log("logging passed args:");
+    // Print the arguments passed to the program
+    for (int i = 0; i < argc; ++i) {
+        std::cout << "Argument " << i << ": " << argv[i] << std::endl;
+    }
+
+    log("Logging file data");
+  for(auto v : vec)
+    {
+      log(v);
+    }
+    
+  /*
+      std::cout << "Hello World!" << std::endl;
+  */
+    return 0;
+}
